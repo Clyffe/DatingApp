@@ -475,3 +475,5 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+DatingApp/.vscode/launch.json
+DatingApp/.vscode/launch.json
