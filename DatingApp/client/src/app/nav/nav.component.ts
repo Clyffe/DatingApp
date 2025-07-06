@@ -3,6 +3,7 @@ import { AccountService } from '../_services/account.service';
 import { Observable, of } from 'rxjs';
 import { User } from '../_models/user';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-nav',
@@ -13,7 +14,7 @@ export class NavComponent  implements OnInit{
 
   model: any = {}
   private router = inject(Router)
-
+  private toastr = inject(ToastrService)
 
   constructor(public accountService: AccountService){}
   ngOnInit(): void {
@@ -26,7 +27,7 @@ export class NavComponent  implements OnInit{
       next: _ => {
         this.router.navigateByUrl('/members')
       },
-      error: error => console.log(error)
+      error: error => this.toastr.error(error.error)
     })
   }
 
