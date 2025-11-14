@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, map } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
+import { BehaviorSubject, map, tap } from 'rxjs';
 import { User } from '../_models/user';
 
 // Handles the HTTP Requests from Client to Server
@@ -13,17 +13,16 @@ import { User } from '../_models/user';
 export class AccountService {
   baseUrl = 'http://localhost:5001/api/';
   private currentUserSource = new BehaviorSubject<User | null>(null);
-  currentUser$ = this.currentUserSource.asObservable();
+  currentUser = signal<User | null>(null);
 
   constructor(private http: HttpClient) { }
 
-  login(model: any){
+  login(model: any) {
     return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
-      map((response: User) => {
-        const user = response;
+      tap(user => {
         if (user){
           localStorage.setItem('user', JSON.stringify(user))
-          this.currentUserSource.next(user);
+          this.currentUser.set(user);
         }
       })
     )

@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 import { Observable, of } from 'rxjs';
 import { User } from '../_models/user';
@@ -12,11 +12,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NavComponent  implements OnInit{
 
+  protected loggedIn = signal(false)
   model: any = {}
   private router = inject(Router)
   private toastr = inject(ToastrService)
 
-  constructor(public accountService: AccountService){}
+  protected accountService = inject(AccountService)
   ngOnInit(): void {
   }
 
@@ -26,6 +27,7 @@ export class NavComponent  implements OnInit{
     this.accountService.login(this.model).subscribe({
       next: _ => {
         this.router.navigateByUrl('/members')
+        this.loggedIn.set(true);
       },
       error: error => this.toastr.error(error.error)
     })
@@ -34,6 +36,7 @@ export class NavComponent  implements OnInit{
   logout() {
     this.accountService.logout();
     this.router.navigateByUrl('/')
+    this.loggedIn.set(false);
 
   }
 }
