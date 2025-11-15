@@ -1,12 +1,13 @@
 import { Component, OnInit, Input, Output, EventEmitter, inject } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 import { Toast, ToastrService } from 'ngx-toastr';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-register',
     templateUrl: './register.component.html',
     styleUrls: ['./register.component.css'],
-    standalone: false
+    imports: [FormsModule]
 })
 export class RegisterComponent implements OnInit {
   @Output() cancelRegister = new EventEmitter(); 
