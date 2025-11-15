@@ -62,7 +62,8 @@
           "options": {
             "ssl": true,
             "sslCert": "./ssl/localhost.pem",
-            "sslKey": "./ssl/localhost-key.pem"
+            "sslKey": "./ssl/localhost-key.pem",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
@@ -96,7 +97,7 @@
             "styles": [
               "src/styles.css",
               "src/assets/css/toast.css" ,
-              "./node_modules/ngx-toastr/toastr.css" 
+              "./node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           }
