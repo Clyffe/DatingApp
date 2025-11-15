@@ -1,14 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { User } from '../_models/user';
-import { NgIf } from '@angular/common';
 import { RegisterComponent } from '../register/register.component';
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css'],
-    imports: [NgIf, RegisterComponent]
+    imports: [RegisterComponent]
 })
 export class HomeComponent implements OnInit{
   registerMode = false;
