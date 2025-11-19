@@ -4,11 +4,13 @@ import { Observable, of } from 'rxjs';
 import { User } from '../_models/user';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-nav',
-  templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css'],
+    selector: 'app-nav',
+    templateUrl: './nav.component.html',
+    styleUrls: ['./nav.component.css'],
+    imports: [RouterLink, RouterLinkActive, FormsModule]
 })
 export class NavComponent  implements OnInit{
 
