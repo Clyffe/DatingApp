@@ -3,8 +3,8 @@ import { AccountService } from '../_services/account.service';
 import { Observable, of } from 'rxjs';
 import { User } from '../_models/user';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
+import { ToastService } from '../_services/toast-service';
 
 @Component({
     selector: 'app-nav',
@@ -17,7 +17,7 @@ export class NavComponent  implements OnInit{
   protected loggedIn = signal(false)
   model: any = {}
   private router = inject(Router)
-  private toastr = inject(ToastrService)
+  private toastr = inject(ToastService)
 
   protected accountService = inject(AccountService)
   ngOnInit(): void {
