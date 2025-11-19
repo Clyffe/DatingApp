@@ -1,49 +1,54 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <div class="container">
-    <a class="navbar-brand" routerLink="/">Dating App</a>
+<header class = "navbar  p-3 w-full fixed top-0 z-50 bg-gradient-to-r from-primary to-black">
+  <div class="flex align middle items-center px-10 mx-auto gap-6">
+    <a routerLink="/" routerLinkActive="active" class="flex items-center max-h-12 text-white border-r-white border-r-2 pr-6">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
+        <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clipRule="evenodd" />
+      </svg> 
+      
+      <h3 class ="text-1xl font-semibold text-white uppercase">Dating App</h3>
+    </a>
+
     @if (accountService.currentUser()) {
-      <ul class="navbar-nav me-auto mb-2 mb-md-0">
-        <li class="nav-item">
-          <a routerLink="/members" routerLinkActive="active" class="nav-link" aria-current="page">Matches</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/lists" routerLinkActive="active" class="nav-link">Lists</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/messages" routerLinkActive="active" class="nav-link">Messages</a>
-        </li>
-      </ul>
-    }
+    <nav class = "flex gap-3 my-2 uppercase text-lg text-white">
+      <a routerLink="/members" routerLinkActive="active" class="nav-link" aria-current="page">Matches</a>
+      <a routerLink="/lists" routerLinkActive="active" class="nav-link">Lists</a>
+      <a routerLink="/messages" routerLinkActive="active" class="nav-link">Messages</a>
+    </nav>
+  }
 
-     @if (accountService.currentUser()) {
-       <!-- removed these because of directives  -->
-<!--        <div class="dropdown" dropdown>-->
-<!--          <a class="dropdown-toggle text-light text-decoration-none" dropdownToggle>Welcome {{ accountService.currentUser()!.username }}</a>-->
-<!--          <div class="dropdown-menu" *dropdownMenu>-->
-<!--            <a class="dropdown-item">Edit Profile</a>-->
-<!--            <a class="dropdown-item" (click)="logout()">Logout</a>-->
-<!--          </div>-->
-<!--        </div>-->
-      }
+  
+  @if (accountService.currentUser()) {
+    <div class="dropdown" dropdown>
+      <a class="dropdown-toggle text-light text-decoration-none" dropdownToggle>Welcome {{ accountService.currentUser()!.username }}</a>
+      <details class="dropdown">
+        <summary class="m-1"></summary>
+        <ul class="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+          <li><a>Edit Profile</a></li>
+          <li><a (click)="logout()">Logout</a></li>
+          </ul>
+          </details>
+        </div>
+   }
 
-      @if (!accountService.currentUser()) {
-        <form #loginForm="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off">
-          <input
-            name="username"
-            [(ngModel)]="model.username"
-            class="form-control me-2"
-            type="text"
-            placeholder="Username"
-            aria-label="Username">
-          <input
-            name="password"
-            [(ngModel)]="model.password"
-            class="form-control me-2"
-            type="password" placeholder="Password"
-            aria-label="Password">
-          <button class="btn btn-outline-success" type="submit">Login</button>
-        </form>
-    }
-    &nbsp;
+  @if (!accountService.currentUser()) {
+    <div class="'flex-align-middle ml-auto gap-3">
+      <form #loginForm="ngForm" class="d-flex flex items-center gap-3" (ngSubmit)="login()" autocomplete="off">
+        <input
+        name="username"
+        [(ngModel)]="model.username"
+        class="form-control me-2" 
+        type="text" 
+        placeholder="Username" 
+        aria-label="Username">
+        <input 
+        name="password"
+        [(ngModel)]="model.password"
+        class="form-control me-2" 
+        type="password" placeholder="Password" 
+        aria-label="Password">
+      <button class="btn btn-outline-success" type="submit">Login</button>
+      </form>
+    </div>
+  }
   </div>
-</nav>
+</header>
