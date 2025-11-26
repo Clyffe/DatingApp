@@ -1,17 +1,18 @@
-<header class = "p-3 w-full fixed top-0 z-50 bg-gradient-to-r from-primary to-black">
-  <div class="flex align middle items-center px-10 mx-auto gap-6">
-    <a routerLink="/" routerLinkActive="active" class="flex items-center gap-3 max-h-12 text-white border-r-white border-r-2 pr-6">
+<header class = "p-3 w-full fixed top-0 z-50 bg-gradient-to-r from-primary to-black text-white">
+  <div class="flex align-middle items-center px-10 mx-auto gap-4 ">
+    <a routerLink="/" routerLinkActive="text-accent" [routerLinkActiveOptions]="{exact: true}" class="flex items-center gap-3 max-h-16 border-r-white border-r-2 pr-6">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
         <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clipRule="evenodd" />
       </svg> 
-      
-      <h3 class ="text-1xl font-semibold text-white uppercase">Dating App</h3>
+      <h3 class ="text-2xl font-semibold uppercase block whitespace-nowrap">Dating App</h3>
     </a>
 
     <nav class = "flex gap-3 my-2 uppercase text-lg text-white">
-      <a routerLink="/members" routerLinkActive="active" class="nav-link" aria-current="page">Matches</a>
-      <a routerLink="/lists" routerLinkActive="active" class="nav-link">Lists</a>
-      <a routerLink="/messages" routerLinkActive="active" class="nav-link">Messages</a>
+      @if (accountService.currentUser()){
+      <a routerLink="/members" routerLinkActive="text-accent" class="nav-link" aria-current="page">Matches</a>
+      <a routerLink="/lists" routerLinkActive="text-accent" class="nav-link">Lists</a>
+      <a routerLink="/messages" routerLinkActive="text-accent" class="nav-link">Messages</a>
+      }
     </nav>
 
     <div class="flex align-middle ml-auto gap-3">
@@ -20,9 +21,9 @@
           <div tabindex="0" role="button" class="flex items-center text-white gap-3 cursor-pointer">
           <a class="dropdown-toggle text-light text-decoration-none" dropdownToggle>Welcome {{ accountService.currentUser()!.username }}</a>
             </div>
-        <ul tabindex="0" class="dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-          <li><a>Edit Profile</a></li>
-          <li><a (click)="logout()">Logout</a></li>
+          <ul tabindex="0" class="dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+            <li><a>Edit Profile</a></li>
+            <li><button><a (click)="logout()">Logout</a></button></li>
           </ul>
         </div>
       }

@@ -117,7 +117,8 @@
       "type": "service"
     },
     "@schematics/angular:guard": {
-      "typeSeparator": "."
+      "skipTests": true,
+      "path": "src/app/guard"
     },
     "@schematics/angular:interceptor": {
       "typeSeparator": "."
