@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { BehaviorSubject, map, tap } from 'rxjs';
-import { User } from '../_models/user';
+import { User } from '../types/user';
 
 // Handles the HTTP Requests from Client to Server
 

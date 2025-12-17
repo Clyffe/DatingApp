@@ -16,10 +16,11 @@
     </nav>
 
     <div class="flex align-middle ml-auto gap-3">
-      @if (accountService.currentUser();) {
+      @if (accountService.currentUser(); as user) {
         <div class="dropdown dropdown-end">
           <div tabindex="0" role="button" class="flex items-center text-white gap-3 cursor-pointer">
-          <a class="dropdown-toggle text-light text-decoration-none" dropdownToggle>Welcome {{ accountService.currentUser()!.username }}</a>
+            <img [src]="user?.imageURL" alt="user avatar" class="w-10 h-10 rounded-full">
+          <a class="dropdown-toggle text-light text-decoration-none" dropdownToggle>Welcome {{ user.displayName}}</a>
             </div>
           <ul tabindex="0" class="dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
             <li><a>Edit Profile</a></li>

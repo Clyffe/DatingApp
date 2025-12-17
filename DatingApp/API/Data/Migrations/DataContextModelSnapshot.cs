@@ -39,7 +39,7 @@ namespace API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("API.Entities.Member", b =>
@@ -79,7 +79,7 @@ namespace API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Members", (string)null);
+                    b.ToTable("Members");
                 });
 
             modelBuilder.Entity("API.Entities.Photo", b =>
@@ -101,7 +101,7 @@ namespace API.Data.Migrations
 
                     b.HasIndex("MemberId");
 
-                    b.ToTable("Photos", (string)null);
+                    b.ToTable("Photos");
                 });
 
             modelBuilder.Entity("API.Entities.Member", b =>
@@ -118,7 +118,7 @@ namespace API.Data.Migrations
             modelBuilder.Entity("API.Entities.Photo", b =>
                 {
                     b.HasOne("API.Entities.Member", "Member")
-                        .WithMany()
+                        .WithMany("Photos")
                         .HasForeignKey("MemberId");
 
                     b.Navigation("Member");
@@ -127,6 +127,11 @@ namespace API.Data.Migrations
             modelBuilder.Entity("API.Controllers.Entities.AppUser", b =>
                 {
                     b.Navigation("Member");
+                });
+
+            modelBuilder.Entity("API.Entities.Member", b =>
+                {
+                    b.Navigation("Photos");
                 });
 #pragma warning restore 612, 618
         }

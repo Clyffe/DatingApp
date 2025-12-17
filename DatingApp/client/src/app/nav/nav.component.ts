@@ -1,7 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 import { Observable, of } from 'rxjs';
-import { User } from '../_models/user';
+import { User } from '../types/user';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ToastService } from '../_services/toast-service';
