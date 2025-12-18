@@ -11,7 +11,7 @@ namespace API.Entities
 
         public DateOnly DateofBirth { get; set; }
 
-        public string? ImageUrl { get; set; }
+        public string? ImageURL { get; set; }
 
         public required string DisplayName { get; set; }
 

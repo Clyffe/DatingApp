@@ -30,7 +30,7 @@ namespace API.Data
                 {
                     Id = member.Id,
                     UserName = member.DisplayName,
-                    ImageURL = member.ImageUrl,
+                    ImageURL = member.ImageURL,
                     PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("Pa$$w0rd")),
                     PasswordSalt = hmac.Key,
                     Member = new Member
@@ -39,7 +39,7 @@ namespace API.Data
                         DisplayName = member.DisplayName,
                         Description = member.Description,
                         DateofBirth = member.DateofBirth,
-                        ImageUrl = member.ImageUrl,
+                        ImageURL = member.ImageURL,
                         Gender = member.Gender,
                         City = member.City,
                         Country = member.Country,
@@ -51,7 +51,7 @@ namespace API.Data
 
                 user.Member.Photos.Add(new Photo
                 {
-                    Url = member.ImageUrl!,
+                    Url = member.ImageURL!,
                     MemberId = member.Id
                 });
 
