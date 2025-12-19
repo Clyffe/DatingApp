@@ -7,7 +7,7 @@
 
             <div class="flex flex-col items-center">
                 <div class="flex text-2xl text-primary">
-                    {{member.displayName}}, 25
+                    {{member.displayName}}, {{member.dateofBirth | age}}
                 </div>
 
                 <div class="text-sm">{{member.city}}, {{member.country}}</div>

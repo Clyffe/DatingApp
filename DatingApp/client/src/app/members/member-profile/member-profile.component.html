@@ -2,12 +2,12 @@
     <div class="flex flex-col gap-3">
         <div class="flex gap-2">
             <span class="font-semibold">Member Since: </span>
-            <span>{{member.createdAt}}</span>
+            <span>{{member.createdAt | date: 'longDate'}}</span>
         </div>
 
         <div class="flex gap-2">
             <span class="font-semibold">Last Scene: </span>
-            <span>{{member.lastActive}}</span>
+            <span>{{member.lastActive | date: 'longDate'}}</span>
         </div>
         <div class="text-lg font-semibold text-primary">About {{member.displayName}}</div>
         <div>{{member.description}}</div>

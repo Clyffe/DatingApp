@@ -2,12 +2,12 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { Observable, filter } from 'rxjs';
 import { Member } from 'src/app/types/member';
-
+import { AgePipe } from 'src/app/pipes/age-pipe';
 @Component({
     selector: 'app-member-detail',
     templateUrl: './member-detail.component.html',
     styleUrls: ['./member-detail.component.css'],
-    imports: [RouterLink, RouterLinkActive, RouterOutlet]
+    imports: [RouterLink, RouterLinkActive, RouterOutlet, AgePipe]
 })
 export class MemberDetailComponent implements OnInit{
     private route = inject(ActivatedRoute);

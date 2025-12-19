@@ -133,6 +133,8 @@
       "typeSeparator": "."
     },
     "@schematics/angular:pipe": {
+      "skipTests": true,
+      "path": "src/app/pipes",
       "typeSeparator": "."
     },
     "@schematics/angular:resolver": {
