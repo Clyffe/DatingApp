@@ -5,6 +5,7 @@ import { User } from '../types/user';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ToastService } from '../_services/toast-service';
+import { themes } from '../layout/theme';
 
 @Component({
     selector: 'app-nav',
@@ -18,9 +19,13 @@ export class NavComponent  implements OnInit{
   model: any = {}
   private router = inject(Router)
   private toastr = inject(ToastService)
+  protected  selectedTheme = signal<string>(localStorage.getItem('theme') || 'light')
+  protected themes =  themes;
 
   protected accountService = inject(AccountService)
+
   ngOnInit(): void {
+    document.documentElement.setAttribute('data-theme', this.selectedTheme());
   }
 
 
@@ -40,5 +45,11 @@ export class NavComponent  implements OnInit{
     this.router.navigateByUrl('/')
     this.loggedIn.set(false);
 
+  }
+
+  handleSelectTheme(theme: string){
+    this.selectedTheme.set(theme);
+    localStorage.setItem('theme', theme);
+    document.documentElement.setAttribute('data-theme', theme);
   }
 }
