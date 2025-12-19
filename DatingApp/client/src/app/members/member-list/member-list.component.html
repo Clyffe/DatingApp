@@ -1,3 +1,4 @@
+<span>Member List</span>
 <div class = "grid grid-cols-5 gap-6">
     @for (member of members$| async; track member.id){
     <app-member-card [member] ="member"/>

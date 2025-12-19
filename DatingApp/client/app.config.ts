@@ -2,13 +2,14 @@ import {ApplicationConfig, inject, provideAppInitializer, provideZoneChangeDetec
 import {lastValueFrom} from 'rxjs'
 import { provideRouter, withViewTransitions } from "@angular/router";
 import { AppRoutingModule, routes } from "src/app/app-routing.module";
-import { provideHttpClient } from "@angular/common/http";
+import { provideHttpClient, withInterceptors } from "@angular/common/http";
 import { InitService } from "src/app/_services/init-service";
+import { jwtInterceptor } from 'src/core/interceptor/jwt-interceptor';
 
 export const appConfig: ApplicationConfig = {
     providers: [
         provideRouter(routes, withViewTransitions()),
-        provideHttpClient(),
+        provideHttpClient(withInterceptors([jwtInterceptor])),
         provideZoneChangeDetection(),
         provideAppInitializer(async () => {
             const initService = inject(InitService);
