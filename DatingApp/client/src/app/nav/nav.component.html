@@ -29,7 +29,7 @@
           </svg>
           <span>{{selectedTheme()}}</span>          
         </button>
-        <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm text-black">
+        <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-50 w-52 p-2 shadow-sm text-black">
           @for (t of themes; track $index) {
             <li (click)="handleSelectTheme(t)">
               <a>{{t}}</a>
@@ -45,7 +45,7 @@
           <a class="dropdown-toggle text-light text-decoration-none" dropdownToggle>Welcome {{ user.displayName}}</a>
             </div>
           <ul tabindex="0" class="dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm text-black">
-            <li><a>Edit Profile</a></li>
+            <li><a routerLink="/members/{{user.id}}">Edit Profile</a></li>
             <li><button><a (click)="logout()">Logout</a></button></li>
           </ul>
         </div>

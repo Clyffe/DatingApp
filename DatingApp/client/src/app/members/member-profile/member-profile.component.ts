@@ -3,6 +3,7 @@ import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Member } from 'src/app/types/member';
 import { AgePipe } from 'src/app/pipes/age-pipe';
+import { MemberService } from 'src/app/_services/member-service';
 
 @Component({
   selector: 'app-member-profile',
@@ -13,6 +14,7 @@ import { AgePipe } from 'src/app/pipes/age-pipe';
 export class MemberProfileComponent implements OnInit{
 
   private route = inject(ActivatedRoute);
+  protected memberService = inject(MemberService);
   protected member = signal<Member | undefined>(undefined);
 
   ngOnInit(): void {
