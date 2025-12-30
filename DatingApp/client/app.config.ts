@@ -5,11 +5,12 @@ import { AppRoutingModule, routes } from "src/app/app-routing.module";
 import { provideHttpClient, withInterceptors } from "@angular/common/http";
 import { InitService } from "src/app/_services/init-service";
 import { jwtInterceptor } from 'src/core/interceptor/jwt-interceptor';
+import { loadingInterceptor } from 'src/app/interceptor/loading-interceptor';
 
 export const appConfig: ApplicationConfig = {
     providers: [
         provideRouter(routes, withViewTransitions()),
-        provideHttpClient(withInterceptors([jwtInterceptor])),
+        provideHttpClient(withInterceptors([jwtInterceptor, loadingInterceptor])),
         provideZoneChangeDetection(),
         provideAppInitializer(async () => {
             const initService = inject(InitService);

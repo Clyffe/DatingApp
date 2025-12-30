@@ -11,6 +11,13 @@ namespace API.Data
            return await context.Members.FindAsync(id);
         }
 
+        public async Task<Member> GetMemberForUpdates(string memberId)
+        {
+            return await context.Members
+            .Include(x => x.User)
+            .SingleOrDefaultAsync(x => x.Id == memberId);
+        }
+
         public async Task<IReadOnlyList<Photo>> GetMemberPhotosAsync(string memberId)
         {
             return await context.Members.Where(x => x.Id == memberId)
@@ -29,7 +36,7 @@ namespace API.Data
             return await context.SaveChangesAsync() > 0;
         }
 
-        public void Update(MemberAccessException member)
+        public void Update(Member member)
         {
             context.Entry(member).State = EntityState.Modified;
         }

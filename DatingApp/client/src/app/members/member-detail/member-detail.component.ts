@@ -23,9 +23,7 @@ export class MemberDetailComponent implements OnInit{
     })
 
     ngOnInit(): void {
-        this.route.data.subscribe({
-            next: data => this.member.set(data['member'])
-        })
+
         this.title.set(this.route.firstChild?.snapshot?.title)
 
         this.router.events.pipe(
