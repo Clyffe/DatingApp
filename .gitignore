@@ -479,3 +479,4 @@ DatingApp/.vscode/launch.json
 DatingApp/.vscode/launch.json
 DatingApp/API/Program.cs
 DatingApp/client/ssl/localhost-key.pem
+/DatingApp/API/appsettings.json
