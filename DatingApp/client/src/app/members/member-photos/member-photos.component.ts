@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { MemberService } from 'src/app/_services/member-service';
@@ -12,16 +12,35 @@ import { ImageUploadComponent } from "src/app/shared/image-upload/image-upload.c
   templateUrl: './member-photos.component.html',
   styleUrl: './member-photos.component.css'
 })
-export class MemberPhotosComponent {
+export class MemberPhotosComponent implements OnInit {
   protected memberService = inject(MemberService);
   private route = inject(ActivatedRoute);
 
-  protected photos$?: Observable<Photo[]>;
+  protected photos = signal<Photo[]>([])
+  protected loading = signal(false);
 
-  constructor(){
+
+  ngOnInit(): void {
     const memberId = this.route.parent?.snapshot?.paramMap.get('id');
     if(memberId){
-      this.photos$ = this.memberService.getMemberPhotos(memberId);
+      this.memberService.getMemberPhotos(memberId).subscribe(
+        {next: photos => this.photos.set(photos)}
+      )
     }
+  }
+
+  onUploadImage(file: File) {
+    this.loading.set(true);
+    this.memberService.uploadPhoto(file).subscribe({
+      next: photo => {
+        this.memberService.editMode.set(false);
+        this.loading.set(false);
+        this.photos.update(photos => [...photos, photo]);
+      },
+      error: error => {
+        console.log('Error Uploading Image ', error)
+        this.loading.set(false)
+      }
+    })
   }
 }

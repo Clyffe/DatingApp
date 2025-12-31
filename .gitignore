@@ -480,3 +480,5 @@ DatingApp/.vscode/launch.json
 DatingApp/API/Program.cs
 DatingApp/client/ssl/localhost-key.pem
 /DatingApp/API/appsettings.json
+DatingApp/API/datingapp.db-shm
+DatingApp/API/datingapp.db-wal
