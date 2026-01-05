@@ -87,5 +87,35 @@ namespace API.Controllers
 
             return BadRequest("No photo.");
         }
+
+
+        [HttpPut("set-main-photo/{photoId}")]
+
+
+        public async Task<ActionResult> SetMainPhoto(int photoId)
+
+
+        {
+            var member = await memberRepository.GetMemberForUpdates(User.GetMemberId());
+
+            if (member == null) return BadRequest("Cannot get member from token");
+
+            var photo = member.Photos.SingleOrDefault(x => x.Id == photoId);
+
+            if (member.ImageURL == photo?.Url || photo == null)
+            {
+
+                return BadRequest("Cannot set this as main image");
+            }
+
+            member.ImageURL = photo.Url;
+
+            member.User.ImageURL = photo.Url;
+
+            if (await memberRepository.SaveAllAsync()) return NoContent();
+            return BadRequest("Problem setting main photo");
+
+
+        }
     }
 }
