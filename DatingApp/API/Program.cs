@@ -38,15 +38,24 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-
-//Configure the HTTP Request Pipeline
 app.UseMiddleware<ExceptionMiddleware>();
+
+// Allow CORS from your SPA origin(s)
 app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
 
+// Authentication / Authorization
 app.UseAuthentication();
 app.UseAuthorization();
 
+// Serve static files (index.html and /assets) from wwwroot
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
+// Map API controllers
 app.MapControllers();
+
+// Fallback to index.html for client-side routes (Angular SPA)
+app.MapFallbackToFile("index.html");
 
 //Service locator pattern
 using var scope = app.Services.CreateScope();
@@ -60,7 +69,6 @@ try
 catch (Exception ex)
 {
     var logger = services.GetRequiredService<ILogger<Program>>();
-    
     logger.LogError(ex, "An error occured during migration");
 }
 
