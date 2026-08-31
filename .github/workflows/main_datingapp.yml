@@ -1,0 +1,80 @@
+# Build both Angular client and .NET API, publish API with client files in wwwroot, and deploy to Azure Web App
+name: Build and deploy ASP.Net Core app to Azure Web App - DatingApp
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install & build client
+        working-directory: DatingApp/client
+        run: |
+          npm ci
+          npm run build -- --configuration production
+
+      - name: Copy client dist into API wwwroot
+        run: |
+          # Adjust the source if your angular.json outputs to a different folder
+          # On Windows PowerShell:
+          Copy-Item -Path 'DatingApp\client\dist\*' -Destination 'DatingApp\API\wwwroot' -Recurse -Force
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: dotnet restore
+        run: dotnet restore DatingApp/API/API.csproj
+
+      - name: Build with dotnet
+        run: dotnet build DatingApp/API/API.csproj --configuration Release
+      
+      - name: dotnet publish 
+        run: dotnet publish DatingApp/API/API.csproj -c Release -o "${{github.workspace}}/myapp"
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v4
+        with:
+          name: .net-app
+          path: ${{github.workspace}}/myapp
+
+  deploy:
+    runs-on: windows-latest
+    needs: build
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: .net-app
+
+# login with service principal JSON stored in GitHub Secrets
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # deploy using publish profile stored in GitHub Secrets (alternative)
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: ./.net-app

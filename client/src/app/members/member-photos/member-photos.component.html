@@ -1,0 +1,30 @@
+@if (!memberService.editMode()) {
+    @if(photos(); as photos){
+        @if(photos.length > 0){
+            <div class="grid grid-cols-4 auto-rows-min gap-3 padding-5 h-[65vh] overflow-auto">
+                @for (photo of photos; track photo.id) {
+                    <div class="relative">
+                        <img src="{{photo.url}}" alt="photo of member" class="w-full rounded-lg">
+                        @if(accountService.currentUser()?.id === memberService.member()?.id){
+                        <app-favorite-button
+                        [disabled]="photo.url === memberService.member()?.imageURL"
+                        [selected]="photo.url === memberService.member()?.imageURL" 
+                        (clickEvent)="setMainPhoto(photo)"
+                        class="absolute top-1 right-1" />
+
+                        <app-delete-button
+                        [disabled]="photo.url === memberService.member()?.imageURL"
+                        (clickEvent)="deletePhoto(photo.id)"
+                        class="absolute top-1 left-1" />
+                        }
+                    </div>
+                }
+            </div>
+        } @else {
+            <p class="text-center text-grey-500">No Photos</p>
+        }
+    }
+} @else {
+    <app-image-upload (uploadFile)="onUploadImage($event)" [loading]="loading()"/>
+}
+
