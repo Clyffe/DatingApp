@@ -493,3 +493,20 @@ DatingApp/API/datingapp.db-wal
 # OS files
 .DS_Store
 Thumbs.db
+
+# ASP.NET Core secrets and local config containing credentials (root-level layout)
+/API/appsettings.json
+/API/appsettings.*.json
+!/API/appsettings.example.json
+!/API/appsettings.*.example.json
+
+# Dev SSL certificates/keys (root-level layout)
+/client/ssl/
+
+# Local SQLite databases (root-level layout)
+/API/datingapp.db
+/API/datingapp.db-shm
+/API/datingapp.db-wal
+
+# JetBrains IDE project files
+.idea/
