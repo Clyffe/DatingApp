@@ -1,0 +1,30 @@
+[
+  {
+    "Id": "karen-id",
+    "DisplayName": "Karen",
+    "Gender": "female",
+    "DateofBirth": "1995-10-12",
+    "KnownAs": "Karen",
+    "CreatedAt": "2024-12-09",
+    "LastActive": "2025-05-06",
+    "Description": "Laborum dolore aliquip voluptate sunt cupidatat fugiat. Aliqua cillum deserunt do sunt ullamco aute Lorem nisi irure velit esse excepteur ex qui. Aliquip cupidatat officia ullamco duis veniam quis elit dolore nisi proident exercitation id cillum ullamco. In exercitation aliqua commodo veniam culpa duis commodo mollit et sint culpa.\r\n",
+    "City": "Celeryville",
+    "Country": "Grenada",
+    "IsDeleted": false,
+    "ImageUrl": "https://randomuser.me/api/portraits/women/54.jpg"
+  },
+  {
+    "Id": "john-id",
+    "DisplayName": " John",
+    "Gender": "male",
+    "DateofBirth": "1993-04-12",
+    "KnownAs": "John",
+    "CreatedAt": "2024-12-19",
+    "LastActive": "2025-05-03",
+    "Description": "Laborum 1 aliquip voluptate sunt cupidatat fugiat. Aliqua cillum deserunt do sunt ullamco aute Lorem nisi irure velit esse excepteur ex qui. Aliquip cupidatat officia ullamco duis veniam quis elit dolore nisi proident exercitation id cillum ullamco. In exercitation aliqua commodo veniam culpa duis commodo mollit et sint culpa.\r\n",
+    "City": "Carroti",
+    "Country": "Grenada",
+    "IsDeleted": false,
+    "ImageUrl": "https://randomuser.me/api/portraits/male/16.jpg"
+  }
+]

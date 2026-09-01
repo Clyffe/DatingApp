@@ -475,11 +475,21 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-DatingApp/.vscode/launch.json
-DatingApp/.vscode/launch.json
-DatingApp/API/Program.cs
-DatingApp/client/ssl/localhost-key.pem
+
+# ASP.NET Core secrets and local config containing credentials
 /DatingApp/API/appsettings.json
+/DatingApp/API/appsettings.*.json
+!/DatingApp/API/appsettings.example.json
+!/DatingApp/API/appsettings.*.example.json
+
+# Dev SSL certificates/keys
+DatingApp/client/ssl/
+
+# Local SQLite databases
+DatingApp/API/datingapp.db
 DatingApp/API/datingapp.db-shm
 DatingApp/API/datingapp.db-wal
-DatingApp/API/datingapp.db
+
+# OS files
+.DS_Store
+Thumbs.db
