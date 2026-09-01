@@ -21,15 +21,13 @@ jobs:
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '10.0.x'
+          dotnet-version: '10.x'
 
-          
-      
       - name: Build with dotnet
-        run: dotnet build DatingApp/API/API.csproj --configuration Release
-      
-      - name: dotnet publish 
-        run: dotnet publish DatingApp/API/API.csproj -c Release -o "${{env.DOTNET_ROOT}}/myapp"
+        run: dotnet build --configuration Release
+
+      - name: dotnet publish
+        run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -53,9 +51,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_CBFE2B71FBB44EBD84F0D085826EE287 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_2D08AA9B4708490C833CDE71E1298BD9 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4508FE638A5740CA98756D6A97705A1A }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_F32ADBAF5AA640EE9479DE0E1EC2232A }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_70B482ECC1F84896ACD93C67D1DC8EC9 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A362BD9BD0B543668160A88A62BA1497 }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
