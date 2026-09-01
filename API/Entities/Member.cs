@@ -9,7 +9,7 @@ namespace API.Entities
     {
         public string Id { get; set; } = null!;
 
-        public DateOnly DateofBirth { get; set; }
+        public DateOnly? DateofBirth { get; set; }
 
         public string? ImageURL { get; set; }
 
@@ -19,13 +19,13 @@ namespace API.Entities
 
         public DateTime LastActive {  get; set; } = DateTime.UtcNow;
 
-        public required string Gender { get; set; } 
+        public string Gender { get; set; } 
 
-        public required string Description { get; set; }
+        public string Description { get; set; }
 
-        public required string City { get; set; }
+        public string City { get; set; }
 
-        public required string Country { get; set; } 
+        public string Country { get; set; } 
 
         public bool IsDeleted { get; set; }
 

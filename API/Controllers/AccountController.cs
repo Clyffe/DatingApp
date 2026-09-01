@@ -33,6 +33,12 @@ namespace API.Controllers{
             };
             // Not writing to db, just adding to EF memory
             _context.Users.Add(user);
+            _context.Members.Add(new API.Entities.Member
+            {
+                Id = user.Id,
+                DisplayName = user.UserName,
+            });
+            // Write to db, EF will generate the SQL and execute it
             await _context.SaveChangesAsync();
 
             return new UserDTO{

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { BehaviorSubject, map, tap } from 'rxjs';
 import { User } from '../types/user';
+import { environment } from '../../environments/environment';
 
 // Handles the HTTP Requests from Client to Server
 
@@ -11,7 +12,7 @@ import { User } from '../types/user';
   providedIn: 'root'
 })
 export class AccountService {
-  baseUrl = 'http://localhost:5001/api/';
+  baseUrl = environment.apiUrl;
   private currentUserSource = new BehaviorSubject<User | null>(null);
   currentUser = signal<User | null>(null);
 
