@@ -18,18 +18,34 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install & build client
+        working-directory: client
+        run: |
+          npm ci
+          npm run build -- --configuration production
+
+      - name: Copy client dist into API wwwroot
+        run: |
+          Copy-Item -Path 'client\dist\client\browser\*' -Destination 'API\wwwroot' -Recurse -Force
+
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '10.0.x'
 
-          
-      
+      - name: dotnet restore
+        run: dotnet restore API/API.csproj
+
       - name: Build with dotnet
-        run: dotnet build DatingApp/API/API.csproj --configuration Release
-      
-      - name: dotnet publish 
-        run: dotnet publish DatingApp/API/API.csproj -c Release -o "${{env.DOTNET_ROOT}}/myapp"
+        run: dotnet build API/API.csproj --configuration Release
+
+      - name: dotnet publish
+        run: dotnet publish API/API.csproj -c Release -o "${{env.DOTNET_ROOT}}/myapp"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
