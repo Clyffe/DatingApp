@@ -9,7 +9,7 @@ namespace API.Extensions{
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration){
             services.AddDbContext<DataContext>(opt => 
             {
-                opt.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
+                opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddCors();
             services.AddScoped<ITokenService, TokenService>();
